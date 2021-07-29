@@ -6,7 +6,7 @@ const forecast = (longitude, latitude, callback) => {
     encodeURIComponent(latitude) +
     "," +
     encodeURIComponent(longitude) +
-    "&units=f";
+    "&units=m";
 
   request({ url, json: true }, (error, { body }) => {
     // {body} means response.body
@@ -21,8 +21,14 @@ const forecast = (longitude, latitude, callback) => {
         dataSource.weather_descriptions[0] +
           ". It is currently " +
           dataSource.temperature +
-          " degrees out and feels like " +
-          dataSource.feelslike
+          "°C degrees out and feels like " +
+          dataSource.feelslike +
+          "°C. \nHumidity is " +
+          dataSource.humidity +
+          "%.\nThere is " +
+          dataSource.wind_speed +
+          "km/h wind coming from " +
+          dataSource.wind_dir
       );
     }
   });
